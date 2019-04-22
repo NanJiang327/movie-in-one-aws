@@ -1,0 +1,12 @@
+export const FETCH_STARTED = 'FETCH_STARTED';
+export const FETCH_NOWSHOWING_COMPLETED = 'FETCH_NOWSHOWING_COMPLETED';
+export const FETCH_UPCOMING_COMPLETED = 'FETCH_UPCOMING_COMPLETED';
+export const FETCH_FAILED = 'FETCH_FAILED';
+export const CHANGE_TYPE = 'CHANGE_TYPE';
+export const CHANGE_LANG = 'CHANGE_LANG';
+export const REGISTER = 'REGISTER';
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
+export const SET_REDIRECT = 'SET_REDIRECT';
+export const ERROR_MESSAGE = 'ERROR_MESSAGE';
+export const LOAD_DATA = 'LOAD_DATA'

@@ -1,0 +1,18 @@
+.rating {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  
+
+  &:hover {
+      color: $lightBlue;
+  }
+  
+  .average {
+    font-size: 1.6em;
+  }
+  .star {
+    color: #ffc107;
+    margin-right: 5px;
+  }
+}

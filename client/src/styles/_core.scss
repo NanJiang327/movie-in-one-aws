@@ -1,0 +1,77 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-base;
+  background-color: #000;
+  color: #fff;
+}
+
+footer {
+  text-align: center;
+  color: #ddd;
+  padding: 25px 0;
+  display: flex;
+  flex-direction: column;
+  span {
+    font-size: 20px;
+  }
+  .github {
+    font-size: 30px;
+    color: #666;
+    width: 24px;
+    height: 24px;
+  }
+  .red {
+      color: tomato;
+  }
+}
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+// a {
+//   $c: #59cafa;
+//   text-decoration: none;
+//   color: $c;
+// }
+
+.icon {
+  width: 32px;
+  height: 32px;
+}
+
+.title {
+  font-size: 2em;
+  font-weight: 200;
+  padding: 0.5em 0;
+  text-align: center;
+  button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    &.active {
+      color: #59cafa;
+      font-weight: bold;
+    }
+  }
+}
+
+.app-bg {
+  background-size: cover;
+  position: fixed;
+  filter: blur(30px) brightness(85%);
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}

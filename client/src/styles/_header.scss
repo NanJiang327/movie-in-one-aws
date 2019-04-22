@@ -1,0 +1,80 @@
+.header {
+  text-align: center;
+  position: relative;
+  .language {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+  }
+
+  a {
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 auto;
+    color: #fff;    
+  }
+  
+  .star {
+    width: 200px;
+    height: 200px;
+  }
+
+  .main-page:hover {
+    filter: grayscale(0.6);
+  }
+
+  .menu {
+    height: 64px;
+    font-size: 16px;
+    background: rgba(245,255,255, 0.1);
+    div {
+      display: inline-block;
+    }
+    .menu-left {
+      width: 33.3333%;
+      .icon-font {
+        margin-right: 10px;
+        font-size: 20px;
+      }
+      a {
+        &:hover {
+          color: $blue;
+        }
+      }
+    }
+    .menu-right {
+      padding-right: 40px;
+      text-align: right;
+      width: 66.66666%;
+      .anticon {
+        margin-left: 5px;
+      }
+      a {
+        padding: 20px;
+      }
+
+      .dropdown-menu {
+        cursor: pointer;
+        padding: 20px;
+        height: 64px;
+      }
+
+      .icon-font {
+        margin-right: 10px;
+      }
+
+      button {
+        background-color: transparent;
+        border: transparent;
+        padding: 20px;
+      }
+
+      .login-btn {
+        margin-right: 5px;
+        &:hover {
+          background-color: $blue;
+        }
+      }
+    }
+  }
+}

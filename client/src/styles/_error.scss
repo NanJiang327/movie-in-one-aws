@@ -1,0 +1,27 @@
+.error-page {
+  padding-top: 50px;
+  min-height: 350px;
+  h1 {
+    font-size: 50px;
+    color: #fff;
+    .icon-font {
+      margin-right: 10px;
+    }
+  }
+  div {
+    padding-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  a {
+    border-radius: 15px;
+    padding: 20px;
+    background: $blue;
+    color: #fff;
+    &:hover {
+      background-color: lighten($blue,10%);
+    }
+  }
+}
