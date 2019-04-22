@@ -3,7 +3,6 @@
   "main": "app.js",
   "author": "Aaron Jiang",
   "version": "0.1.0",
-  "homepage": "https://nanjiang327.github.io/movie-in-one",
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.3",
