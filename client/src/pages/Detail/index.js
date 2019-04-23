@@ -56,14 +56,22 @@ class Detail extends Component {
 
   fetchReviews = () => {
     const movieId = this.props.match.params.id 
-    axios.get('/comment/'+movieId)
-      .then(localReviewRes => {
+    let reviewApi = config.tmdb.basicUrl + movieId + '/reviews?api_key=' + config.tmdb.apiKey
+    axios.all([
+      axios.get(reviewApi),
+      axios.get('/comment/'+movieId)
+    ])
+      .then(axios.spread((reviewRes, localReviewRes) => {
+        this.setState({
+          reviews: reviewRes.data.results,
+          ready: true
+        })
         if (localReviewRes.status === 200 && localReviewRes.data.code === 0) {
           this.setState({
             reviews: [...this.state.reviews, ...localReviewRes.data.data],
           })
         }
-      })
+      }))
       .catch((err) => {
         console.log(err)
       })
@@ -78,8 +86,9 @@ class Detail extends Component {
       axios.get(castApi),
       axios.get(movieApi),
       axios.get(reviewApi),
+      axios.get('/comment/'+movieId)
     ])
-      .then(axios.spread((castRes, movieRes, reviewRes) => {
+      .then(axios.spread((castRes, movieRes, reviewRes, localReviewRes) => {
         this.setState({
           movie: movieRes.data,
           overview: movieRes.data.overview,
@@ -87,19 +96,12 @@ class Detail extends Component {
           reviews: reviewRes.data.results,
           ready: true
         })
-      }))
-      .catch((err) => {
-        console.log(err)
-      })
-
-    axios.get('/comment/'+movieId)
-      .then(localReviewRes => {
         if (localReviewRes.status === 200 && localReviewRes.data.code === 0) {
           this.setState({
             reviews: [...this.state.reviews, ...localReviewRes.data.data],
           })
         }
-      })
+      }))
       .catch((err) => {
         console.log(err)
       })
