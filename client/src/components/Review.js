@@ -4,6 +4,7 @@ import Loading from './Loading'
 import {
   Comment, List, Avatar
 } from 'antd';
+import config from '../utils/config'
 
 class Review extends Component {
   render () {
@@ -20,7 +21,7 @@ class Review extends Component {
               <Comment
                 author={<a href={item.url}>{item.author}</a>}
                 content={(
-                  <p>{item.content}</p>
+                  <p>{config.HtmlUtil.htmlDecodeByRegExp(item.content)}</p>
                 )}
                 avatar={(
                 <Avatar

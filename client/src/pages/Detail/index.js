@@ -38,7 +38,7 @@ class Detail extends Component {
       const movieId = this.props.match.params.id
       const author = this.props.user.username
       const userId = this.props.user.userId
-      const content = values.comment
+      const content = config.HtmlUtil.htmlEncodeByRegExp(values.comment)
       if (!err) {
         axios.post('/comment/post', {author, userId, content, movieId})
           .then(res => {
@@ -55,7 +55,7 @@ class Detail extends Component {
   }
 
   fetchReviews = () => {
-    const movieId = this.props.match.params.id 
+    const movieId = this.props.match.params.id
     let reviewApi = config.tmdb.basicUrl + movieId + '/reviews?api_key=' + config.tmdb.apiKey
     axios.all([
       axios.get(reviewApi),
@@ -78,15 +78,14 @@ class Detail extends Component {
   }
 
   fetchDetail = (id, language) => {
-    const movieId = this.props.match.params.id 
     let castApi = config.tmdb.basicUrl + id +'/credits?api_key=' + config.tmdb.apiKey
     let movieApi = config.tmdb.basicUrl + id + '?api_key=' + config.tmdb.apiKey +'&language=' + language
-    let reviewApi = config.tmdb.basicUrl + movieId + '/reviews?api_key=' + config.tmdb.apiKey
+    let reviewApi = config.tmdb.basicUrl + id + '/reviews?api_key=' + config.tmdb.apiKey
     axios.all([
       axios.get(castApi),
       axios.get(movieApi),
       axios.get(reviewApi),
-      axios.get('/comment/'+movieId)
+      axios.get('/comment/'+id)
     ])
       .then(axios.spread((castRes, movieRes, reviewRes, localReviewRes) => {
         this.setState({
