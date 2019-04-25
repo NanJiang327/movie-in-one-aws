@@ -7,6 +7,7 @@ import Movie from '../../components/Movie'
 import Loading from '../../components/Loading'
 import Cast from '../../components/Cast'
 import Review from '../../components/Review'
+import ErrorPage  from '../404'
 import config from '../../utils/config'
 import { Divider, BackTop, Input, Button, Form, message } from 'antd'
 
@@ -16,6 +17,7 @@ class Detail extends Component {
     super ()
     this.state = {
       ready: false,
+      error: false,
       movie: {},
       casts: [],
       reviews: []
@@ -93,7 +95,8 @@ class Detail extends Component {
           overview: movieRes.data.overview,
           casts: castRes.data.cast,
           reviews: reviewRes.data.results,
-          ready: true
+          ready: true,
+          error: false
         })
         if (localReviewRes.status === 200 && localReviewRes.data.code === 0) {
           this.setState({
@@ -103,6 +106,10 @@ class Detail extends Component {
       }))
       .catch((err) => {
         console.log(err)
+        this.setState({
+          error: true,
+          ready: true
+        })
       })
   }
 
@@ -111,13 +118,17 @@ class Detail extends Component {
 
     if (!this.state.ready) return <Loading />
 
+    if (this.state.ready && this.state.error) {
+      return <ErrorPage />
+    }
+
     let casts = this.state.casts.map((cast, castId) => {
       return castId < 4 ? <Cast {...cast} key={castId} /> : null
     })
     
     return (
       <div>
-       <Movie data={this.state.movie} language={this.props.language} appBackground />
+        <Movie data={this.state.movie} language={this.props.language} appBackground />
         <section className="subject-casts">
           <Divider className="casts-title">
             {

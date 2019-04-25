@@ -6,6 +6,7 @@ import { BackTop } from 'antd'
 
 import Loading from '../../components/Loading'
 import Rating from '../../components/Rating'
+import ErrorPage  from '../404'
 import config from '../../utils/config'
 
 
@@ -16,7 +17,8 @@ class CastDetail extends Component {
     this.state = {
       ready: false,
       productions: [],
-      detail: {}
+      detail: {},
+      error: false
     }
   }
 
@@ -38,10 +40,14 @@ class CastDetail extends Component {
       axios.get(detailApi)
     ])
     .then(axios.spread((productionRes, detailRes) => {
-        this.setState({ productions: productionRes.data.cast, detail: detailRes.data, ready: true})
+        this.setState({ productions: productionRes.data.cast, detail: detailRes.data, ready: true, error: false})
     }))
     .catch(err => {
         console.log(err)
+        this.setState({
+          error: true,
+          ready: true
+        })
     })
   }
 
@@ -72,6 +78,9 @@ class CastDetail extends Component {
 
   render () {
     if (!this.state.ready) return <Loading />
+    if (this.state.ready && this.state.error) {
+      return <ErrorPage />
+    }
     const { productions, detail } = this.state
     const backgroundImage = `url(${config.tmdb.bgUrl + productions[0]['poster_path']})`
     return (
