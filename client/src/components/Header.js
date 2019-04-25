@@ -55,7 +55,7 @@ class Header extends Component {
           <div className="menu-left">
             <Link to='/' replace>
               <IconFont name={'movie'} />
-              Movie in One - test jenkins 
+              Movie in One
             </Link>
           </div>
           <div className="menu-right">
