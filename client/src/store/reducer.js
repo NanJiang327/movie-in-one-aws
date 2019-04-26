@@ -79,7 +79,6 @@ export default (state = defaultState, action) => {
         errorMsg: action.err
       })
     case constants.LOGIN:
-      console.log(action.payload['_id'])
       return Object.assign({}, state, {
         user: {
           logged: true,
