@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 // Connect mongodb
 // const DB_URL = 'mongodb://localhost:27017/movie-in-one'
 
-const uri = "mongodb+srv://j499521010:123.comwyxx@cluster0-s97y5.mongodb.net/test?retryWrites=true";
+const uri = "mongodb+srv://j499521010:123.comwyxx@cluster0-s97y5.mongodb.net/movie-in-one?retryWrites=true";
 // const client = new MongoClient(uri, { useNewUrlParser: true });
 // client.connect(err => {
 //   const collection = client.db("test").collection("devices");
@@ -16,6 +16,7 @@ const models = {
     'username': {type: String, require: true},
     'password': {type: String, require: true},
     'language': {type: String, require: true},
+    'favoriteMovies': {type: Array, require: true},
     'avatar': {type: String, require: false}
   },
   comment: {

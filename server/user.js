@@ -21,13 +21,12 @@ Router.get('/info', function(req, res){
       return res.json({code: 1, msg: 'Something wrong. Please try again.'})
     }
     if (result) {
-      return res.json({code: 0, data: req.session.userInfo})
+      return res.json({code: 0, data: result})
     }
   })
 })
 
 Router.get('/logout', function(req, res) {
-  console.log('Logut call')
   req.session.destroy(() => {
     res.clearCookie("userInfo", {})
     res.clearCookie("connect.sid", {path: '/'})
@@ -35,11 +34,40 @@ Router.get('/logout', function(req, res) {
   })
 })
 
+Router.get('/like', function(req, res) {
+  const movieId = req.query.movieId
+  const userId = req.query.userId
+  User.updateOne({"_id": userId}, 
+  {"$push" : { favoriteMovies: movieId}}, function(err, result){
+    if (err) {
+      return res.json({code: 1})
+    }
+    if (result) {
+      return res.json({code: 0})
+    }
+  })
+})
+
+Router.get('/dislike', function(req, res) {
+  const movieId = req.query.movieId
+  const userId = req.query.userId
+  User.updateOne({"_id": userId}, 
+  {"$pull" : { favoriteMovies: movieId}}, function(err, result){
+    if (err) {
+      return res.json({code: 1})
+    }
+    if (result) {
+      return res.json({code: 0})
+    }
+  })
+})
+
+
 Router.post('/changeLang', function(req, res) {
   const { username, language } = req.body
   User.updateOne({username}, {language}, function(err, docs) {
     if(err) console.log(err);
-    console.log('Change success' + docs);
+    if (docs) return res.json({code: 0})
   })
 })
 
@@ -78,12 +106,12 @@ Router.post('/register', function(req, res) {
   }, err => {
     return Promise.reject(err)
   }).then(() => {
-    const userModel = new User({username, email, password: md5Password(password), language})
+    const userModel = new User({username, email, password: md5Password(password), language, favoriteMovies: []})
     userModel.save(function (err, result) {
       if (err) {
         return res.json({code: 1, msg: 'Something wrong. Please try again.'})
       }
-      const { username, email, _id, language } = result
+      const { username, email, _id, language, favoriteMovies:[] } = result
       req.session.userInfo = result
       return res.json({code: 0, data: { username, email, _id, language }})
     })

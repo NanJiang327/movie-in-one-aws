@@ -31,6 +31,16 @@ export const setErrorMsg = (msg) => ({
   err: msg
 })
 
+export const addFavorite = (id) => ({
+  type: constants.ADD_FAVORITE,
+  id
+})
+
+export const removeFavorite = (id) => ({
+  type: constants.REMOVE_FAVORITE,
+  id
+})
+
 export function fetchData(fetchingType, language) {
   return (dispatch, getState) => {
     if (fetchingType !== getState().type) {
@@ -70,7 +80,7 @@ export function fetchData(fetchingType, language) {
 export function register(values) {
   return (dispatch, getState) => {
     const {username, email, password, language} = values
-    axios.post('/user/register', {username, email, password, language})
+    axios.post('/user/register', {username, email, password, language })
       .then(res => {
         if (res.status === 200 && res.data.code === 0) {
           dispatch({
@@ -143,3 +153,5 @@ export function loadData() {
       })
   }
 }
+
+

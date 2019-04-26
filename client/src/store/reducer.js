@@ -11,7 +11,8 @@ const defaultState = {
     logged: false,
     username: '',
     email: '',
-    userId: ''
+    userId: '',
+    favoriteMovies: []
   },
   redirectTo: '',  
   errorMsg: ''
@@ -65,6 +66,7 @@ export default (state = defaultState, action) => {
           username: action.payload.username,
           email: action.payload.email,
           usrId: action.payload['_id'],
+          favoriteMovies: []
         },
         language: action.payload.language
       })
@@ -82,7 +84,8 @@ export default (state = defaultState, action) => {
           logged: true,
           username: action.payload.username,
           email: action.payload.email,
-          userId: action.payload['_id']
+          userId: action.payload['_id'],
+          favoriteMovies: [...state.user.favoriteMovies, ...action.payload.favoriteMovies]
         },
         language: action.payload.language
       })
@@ -92,7 +95,8 @@ export default (state = defaultState, action) => {
           logged: false,
           username: '',
           email: '',
-          userId: ''
+          userId: '',
+          favoriteMovies: []
         },
         language: 'en-AU'
       })
@@ -102,10 +106,21 @@ export default (state = defaultState, action) => {
           logged: true,
           username: action.payload.username,
           email: action.payload.email,
-          userId: action.payload['_id']
+          userId: action.payload['_id'],
+          favoriteMovies: [...state.user.favoriteMovies, ...action.payload.favoriteMovies]
         },
         language: action.payload.language
       })
+    case constants.ADD_FAVORITE:
+      const copyAddObj = JSON.parse(JSON.stringify(state));
+      copyAddObj.user.favoriteMovies.push(action.id)
+      return copyAddObj
+    case constants.REMOVE_FAVORITE:
+      const copyRemoveObj = JSON.parse(JSON.stringify(state));
+      copyRemoveObj.user.favoriteMovies = copyRemoveObj.user.favoriteMovies.filter(item => {
+        return item !== action.id
+      })
+      return copyRemoveObj
     default: 
       return state
   }

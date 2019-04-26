@@ -69,6 +69,10 @@ $subject-height-small: 520px;
     max-height: 178px;
     overflow: hidden;
   }
+  .like, .dislike {
+    font-size: 25px;
+    cursor: pointer;
+  }
 }
 .subject-content {
   width: 700px;

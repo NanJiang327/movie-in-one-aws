@@ -10,3 +10,5 @@ export const LOGOUT = 'LOGOUT';
 export const SET_REDIRECT = 'SET_REDIRECT';
 export const ERROR_MESSAGE = 'ERROR_MESSAGE';
 export const LOAD_DATA = 'LOAD_DATA'
+export const ADD_FAVORITE = 'ADD_FAVORITE'
+export const REMOVE_FAVORITE = 'REMOVE_FAVORITE'

@@ -22,8 +22,6 @@ app.use(cors());
 
 app.use(express.static(path.join(__dirname, "client/build")))
 
-console.log(path.join(__dirname, "client/build"))
-
 app.use(cookieParser())
 app.use(session({
   secret: "movie",

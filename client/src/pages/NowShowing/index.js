@@ -23,7 +23,7 @@ class NowShowing extends Component {
   }
 
   render (){
-    const { fetchNowShowing, fetchUpcoming, type, isFetching, nowShowingArr, upcomingArr, language} = this.props
+    const { fetchNowShowing, fetchUpcoming, type, isFetching, nowShowingArr, upcomingArr, language } = this.props
     if (isFetching) return <Loading />
     const lang = language === 'en-AU' ? {
       showing: 'Now Playing',

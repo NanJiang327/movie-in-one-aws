@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import IconFont from './IconFont'
 import Search from './Search'
 import { Link } from 'react-router-dom'
-import { Menu, Dropdown, Icon } from 'antd';
+import { Menu, Dropdown, Icon, message } from 'antd';
 import { connect } from 'react-redux';
 import { changeLang, logout, loadData } from '../store/action'
 import browserCookies from 'browser-cookies'
@@ -13,10 +13,12 @@ class Header extends Component {
   onClick = ({ key }) => {
     this.props.changeLang(key)
     if (this.props.user.logged) {
-      console.log(key)
       axios.post('/user/changeLang', {username: this.props.user.username, language: key})
         .then(res => {
-          console.log(this.props.language)
+          console.log(res.data.code)
+          if (res.data.code === 0 ) {
+            key === 'zh-CN' ? message.success('修改用户语言成功', 1.5) : message.success('Language changed', 1.5)
+          }
         })
         .catch(err =>{
           console.log(err)

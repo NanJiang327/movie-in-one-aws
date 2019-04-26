@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[16],{660:function(e,a,n){"use strict";n.r(a);var t=n(1),l=n.n(t),r=n(451);a.default=function(){return l.a.createElement("footer",null,l.a.createElement("p",null,l.a.createElement("span",null,"Made"),l.a.createElement("span",{className:"red"}," by "),l.a.createElement("span",null," Aaron Jiang @ 2019")),l.a.createElement("a",{href:"https://github.com/NanJiang327"},l.a.createElement(r.a,{type:"github",className:"github"})))}}}]);
+//# sourceMappingURL=16.4ce2da60.chunk.js.map

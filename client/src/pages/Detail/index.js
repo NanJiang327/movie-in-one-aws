@@ -30,7 +30,7 @@ class Detail extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (JSON.stringify(this.props) === JSON.stringify(nextProps)) return
-    this.setState({ ready: false })
+    // this.setState({ ready: false })
     this.fetchDetail(nextProps.match.params.id, nextProps.language)
   }
 
