@@ -85,7 +85,7 @@ export function register(values) {
         if (res.status === 200 && res.data.code === 0) {
           dispatch({
               type: constants.REGISTER,
-              payload: values
+              payload: res.data.data
           })
           dispatch(setRedirect('/'))
           dispatch(changeLang(language))

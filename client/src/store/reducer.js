@@ -65,7 +65,7 @@ export default (state = defaultState, action) => {
           logged: true,
           username: action.payload.username,
           email: action.payload.email,
-          usrId: action.payload['_id'],
+          userId: action.payload['_id'],
           favoriteMovies: []
         },
         language: action.payload.language
@@ -79,6 +79,7 @@ export default (state = defaultState, action) => {
         errorMsg: action.err
       })
     case constants.LOGIN:
+      console.log(action.payload['_id'])
       return Object.assign({}, state, {
         user: {
           logged: true,
