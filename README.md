@@ -10,6 +10,8 @@ available on: http://movie-in-one.info
 - [x] Add user comments from IMDB
 - [x] Add login / registration
 - [x] Make comments for the movie
+- [x] Add my favorite movie
+
 
 Todo
-- [ ] Add my favorite movie
+
