@@ -53,7 +53,7 @@ class Header extends Component {
     const settingMenu = (
       <Menu
       >
-        <Menu.Item key=''>
+        <Menu.Item key='' disabled>
           My favorite movie
         </Menu.Item>
         <Menu.Item key='' onClick={() => {this.clickLogout()}}>
