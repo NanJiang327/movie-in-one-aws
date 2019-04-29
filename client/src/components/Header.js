@@ -36,7 +36,7 @@ class Header extends Component {
   }
 
   render () {
-    const menu = (
+    const langMenu = (
       <Menu
         onClick={this.onClick}
         selectedKeys={[this.props.language]}
@@ -49,6 +49,18 @@ class Header extends Component {
         </Menu.Item>
       </Menu>
     );
+
+    const settingMenu = (
+      <Menu
+      >
+        <Menu.Item key=''>
+          My favorite movie
+        </Menu.Item>
+        <Menu.Item key='' onClick={() => {this.clickLogout()}}>
+            Logout
+        </Menu.Item>
+      </Menu>
+    )
 
 
     return (
@@ -63,26 +75,26 @@ class Header extends Component {
           <div className="menu-right">
             {
               this.props.user.logged ? 
-                <button 
-                  onClick={() => {this.clickLogout()}}
-                  className="login-btn" 
-                >
-                  <IconFont name={'acc'} className='movie-title'/>
-                  Logout
-                </button> :
+                <Dropdown overlay={settingMenu} className="dropdown-menu">
+                  <div className="ant-dropdown-link" >
+                    <IconFont name={'acc'} />
+                    Welcome back, {this.props.user.username}<Icon type="down" />
+                  </div>
+                </Dropdown>
+                :
                 <Link 
                   to='/login' 
                   className="login-btn" 
                   replace
                 
                 >
-                  <IconFont name={'acc'} className='movie-title'/>
+                  <IconFont name={'acc'}/>
                   Login
                 </Link>
             }
-            <Dropdown overlay={menu} className="dropdown-menu">
+            <Dropdown overlay={langMenu} className="dropdown-menu">
               <div className="ant-dropdown-link" >
-                <IconFont name={'lang'} className='movie-title'/>
+                <IconFont name={'lang'} />
                 Language<Icon type="down" />
               </div>
             </Dropdown>
