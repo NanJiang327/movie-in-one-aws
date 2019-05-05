@@ -15,4 +15,4 @@ available on: http://movie-in-one.info
 
 ### Todo
 
-- [] Internationalize
+- [ ] Internationalize
