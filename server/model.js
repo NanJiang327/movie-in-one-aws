@@ -32,17 +32,6 @@ for (let m in models) {
   mongoose.model(m, new mongoose.Schema(models[m]))
 }
 
-// User.create({
-//   email: 'aaronj.9403@gmail.com',
-//   password: '123.comwyxx'
-// }, function(err, doc) {
-//   if (!err) {
-//     console.log(doc)
-//   } else {
-//     console.log(err)
-//   }
-// })
-
 mongoose.connect(uri, { useNewUrlParser: true });
 mongoose.connection.on('connected', function(){
   console.log('mongo connect success')
