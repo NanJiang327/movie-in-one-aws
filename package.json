@@ -11,7 +11,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
-    "mongoose": "^5.5.2",
+    "mongoose": "^5.7.5",
     "utility": "^1.16.1"
   },
   "devDependencies": {
